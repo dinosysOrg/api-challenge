@@ -22,11 +22,56 @@ Your application should be easy to set up, and should not require any non open-s
 
 ### Documentation:
 
-Please modify README.md to add:
+  #### How to run application
 
-- Instructions on how to build/run your application.
-- Instructions on how we can verify the correctness of your application.
-- A paragraph or two about what you are particularly proud of in your implementation, and why.
+  Step 1: Checkout source code and make sure you installed `ruby`, `rails` and `postgresql`
+
+  Step 2: Run
+
+     ```
+      rails db:create
+      rails db:migrate
+      rails server
+     ```
+
+ Step 3: We have 2 API:
+
+  1. API import json data to database
+   - URL PATH: http://localhost:3000/api/v1/expenses
+   - HTTP Verb: POST
+   - Example by `curl` send POST request to API:
+
+    ```
+    curl -vX POST http://localhost:3000/api/v1/expenses -d @expenses.json --header "Content-Type: application/json"
+     #note: expenses.json: path to your json file
+    ```
+  2. API calculator expenses amount by categories
+    - URL PATH: http://localhost:3000/api/v1/calc_expenses
+    - HTTP Verb: GET
+    - Parameter require: category_name, year, month
+    - Example by `curl` send GET request to API:
+
+    ```
+      curl http://localhost:3000/api/v1/calc_expenses?category_name=travel&year=2013&month=10
+    ```
+  #### How to verify the correctness of application
+  Please input smail json file and calculate manual.
+
+  I provided 2 API others
+  - API calculate tax by category:  http://localhost:3000/api/v1/calc_tax
+  - API calculate pre tax by category: http://localhost:3000/api/v1/calc_pre_tax
+
+  You can use that to check expenses.
+  - Example by `curl`:
+
+  ```
+  curl http://localhost:3000/api/v1/calc_tax?category_name=travel&year=2013&month=10
+  curl http://localhost:3000/api/v1/calc_pre_tax?category_name=travel&year=2013&month=10
+  ```
+
+  #### One point particularly proud
+  The first time I implement API
+
 
 ### Submission Instructions
 
