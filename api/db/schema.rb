@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517081138) do
+ActiveRecord::Schema.define(version: 20170517091445) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170517081138) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.datetime "data"
+    t.datetime "date"
     t.string "category"
     t.decimal "pre_tax_amount", precision: 5, scale: 2
     t.string "expense_description"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170517081138) do
     t.decimal "tax_amount", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "employee_id"
+    t.index ["employee_id"], name: "index_expenses_on_employee_id"
   end
 
 end

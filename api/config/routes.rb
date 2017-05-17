@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'expenses/import_data'
+      post 'expenses/import_data'
     end
   end
 
