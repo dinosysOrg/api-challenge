@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2017-05-17 15:11:38
+  category: MyString
+  pre_tax_amount: 9.99
+  expense_description: MyString
+  tax_name: MyString
+  tax_amount: 9.99
+
+two:
+  data: 2017-05-17 15:11:38
+  category: MyString
+  pre_tax_amount: 9.99
+  expense_description: MyString
+  tax_name: MyString
+  tax_amount: 9.99
