@@ -1,0 +1,21 @@
+<div class="container">
+<%= form_for(@venue) do |f| %>
+	<% if @venue.errors.any? %>
+		<% @venue.errors.full_messages.each do |mes| %>
+				<div class="alert alert-danger">
+					<%= mes %>
+				</div>
+		<% end %>
+	<% end %>
+
+	<div class="row" >
+			<h4><code style="color: purple; margin-left: 20px"><%= f.label :name, "Name (*)" %></code></h4>
+			<div class="col-xs-4">
+				<%= f.text_field :name , class: "form-control" %><br>
+				<%= f.submit "Go", class: "btn btn-success" %>
+			</div>
+
+	</div>
+<% end %>
+
+</div>

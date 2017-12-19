@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dinosys</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
+
+    <%= stylesheet_link_tag "http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css" %>
+
+    <%= javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %>
+
+    <%= stylesheet_link_tag "https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css" %>
+
+    <%= javascript_include_tag "https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js" %>
+
+    <%=  javascript_include_tag 'alert2.js' %>
+
+    <%=  javascript_include_tag 'editable.js' %>
+
+    <%=  stylesheet_link_tag 'editable.css' %>
+    
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
