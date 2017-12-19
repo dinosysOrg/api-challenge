@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219075216) do
+ActiveRecord::Schema.define(version: 20171219102525) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.integer "tournament_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.integer "tournament_id"
+    t.integer "player_id1"
+    t.integer "player_id2"
+    t.time "time"
+    t.date "date"
+    t.integer "venue_id"
+    t.string "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "group_id"
   end
 
   create_table "players", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

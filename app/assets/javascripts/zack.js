@@ -1,5 +1,5 @@
 $(document).ready(function(){
-		$("#table_tournament,#table_venue,#table_group").DataTable({
+		$("#table_tournament,#table_venue,#table_group,#table_player").DataTable({
 			paging: false,
 			info: false
 		});
