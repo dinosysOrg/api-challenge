@@ -21,7 +21,7 @@
 							<td>
 								<span group_id="<%= group.id %>" data-name="tournament_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= group.tournament.name %></span>
 							</td>
-							<td><%= group.created_at %></td>
+							<td><%= group.created_at.strftime("%d-%m-%Y") %></td>
 							<td id="<%= group.id %>" class="delete_group">Delete</td>
 						</tr>
 					<% end %>

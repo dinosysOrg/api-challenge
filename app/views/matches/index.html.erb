@@ -32,11 +32,17 @@
 							</td>
 							
 							<td>
-								<span match_id="<%= match.id %>" data-name="player_id1" class="player_1" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span>
+								<% if Player.find(match.player_id1).nil? %>
+								<% else %>
+									<span match_id="<%= match.id %>" data-name="player_id1" class="player_1" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span>
+								<% end %>
 							</td>
 
 							<td>
-								<span match_id="<%= match.id %>" data-name="player_id2" class="player_2" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span>
+								<% if Player.find(match.player_id2).nil? %>
+								<% else %>
+									<span match_id="<%= match.id %>" data-name="player_id2" class="player_2" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span>
+								<% end %>
 							</td>
 
 							<td>

@@ -144,39 +144,41 @@ class Match < ApplicationRecord
 	end
 
 	def reduce_score
-		player1 = Player.find(self.player_id1)
-		player2 = Player.find(self.player_id2)
-		if self.result.include?("-")
-			result = self.result.split("-")
-			if result[0] > result[1]
-				player1.score -= 3
-				player1.win -= 1
-				player2.lose -= 1
-			elsif result[0] < result[1]
-				player2.score -= 3
-				player2.win -= 1
-				player1.lose -= 1
-			else
-				player1.score -= 1
-				player2.score -= 1
-				player1.draw -= 1
-				player2.draw -= 1
+		player1 = Player.find_by_id(self.player_id1)
+		player2 = Player.find_by_id(self.player_id2)
+		if !player1.nil? && !player2.nil?
+			if self.result.include?("-")
+				result = self.result.split("-")
+				if result[0] > result[1]
+					player1.score -= 3
+					player1.win -= 1
+					player2.lose -= 1
+				elsif result[0] < result[1]
+					player2.score -= 3
+					player2.win -= 1
+					player1.lose -= 1
+				else
+					player1.score -= 1
+					player2.score -= 1
+					player1.draw -= 1
+					player2.draw -= 1
+				end
+				player1.save!
+				player2.save!
+			elsif self.result.include? " gave"
+				result = self.result.split(" gave")
+				if player1.name == result[0]
+					player2.score -= 3
+					player2.win -= 1
+					player1.lose -= 1
+				elsif player2.name == result[0]
+					player1.score -= 3
+					player1.win -= 1
+					player2.lose -= 1
+				end
+				player1.save!
+				player2.save!
 			end
-			player1.save!
-			player2.save!
-		elsif self.result.include? " gave"
-			result = self.result.split(" gave")
-			if player1.name == result[0]
-				player2.score -= 3
-				player2.win -= 1
-				player1.lose -= 1
-			elsif player2.name == result[0]
-				player1.score -= 3
-				player1.win -= 1
-				player2.lose -= 1
-			end
-			player1.save!
-			player2.save!
 		end
 	end
 end

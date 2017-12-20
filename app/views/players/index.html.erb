@@ -18,7 +18,11 @@
 								<span player_id="<%= player.id %>" data-name="name" class="players" data-type="text" data-pk="1" data-title="Enter name"><%= player.name %></span>
 							</td>
 							<td>
-								<span player_id="<%= player.id %>" data-name="group_id" class="player_group" data-type="select" data-pk="2" data-title="Enter name"><%= player.group.name %></span>
+								<% if player.group.nil? %>
+									
+								<% else %>
+									<span player_id="<%= player.id %>" data-name="group_id" class="player_group" data-type="select" data-pk="2" data-title="Enter name"><%= player.group.name %></span>
+								<% end %>
 							</td>
 							<td><%= player.score %></td>
 							<td id="<%= player.id %>" class="delete_player">Delete</td>
