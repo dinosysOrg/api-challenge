@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all
+    @players = Player.order("score DESC").includes(:group)
   end
 
   def new

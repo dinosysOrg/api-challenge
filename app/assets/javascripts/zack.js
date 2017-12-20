@@ -1,7 +1,8 @@
 $(document).ready(function(){
 		$("#table_tournament,#table_venue,#table_group,#table_player").DataTable({
 			paging: false,
-			info: false
+			info: false,
+            sort: false
 		});
 
 		$(".delete_tournament").click(function() {

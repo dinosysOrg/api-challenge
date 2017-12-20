@@ -9,10 +9,10 @@
 						<th>Group</th>
 						<th>Player 1</th>
 						<th>Player 2</th>
-						<th>Time</th>
-						<th>Date</th>
 						<th>Result</th>
 						<th>Venue</th>
+						<th>Time</th>
+						<th>Date</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -28,30 +28,33 @@
 							</td>
 
 							<td>
-								<span match_id="<%= match.id %>" data-name="group_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= match.group.name %></span>
+								<span match_id="<%= match.id %>" data-name="group_id" class="match_group" data-type="select" data-pk="2" data-title="Enter name"><%= match.group.name %></span>
 							</td>
 							
 							<td>
-								<span match_id="<%= match.id %>" data-name="group_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span>
+								<span match_id="<%= match.id %>" data-name="player_id1" class="player_1" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span>
 							</td>
 
 							<td>
-								<span match_id="<%= match.id %>" data-name="group_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span>
+								<span match_id="<%= match.id %>" data-name="player_id2" class="player_2" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span>
 							</td>
 
 							<td>
-								<span match_id="<%= match.id %>" data-name="group_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= match.time.strftime("%T") %></span>
+							<span match_id="<%= match.id %>" data-name="result" class="result" data-type="text" data-pk="2" data-title="Enter name"><%= match.result %></span>
 							</td>
-
-							<td>
-								<span match_id="<%= match.id %>" data-name="group_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= match.date.strftime("%d-%m-%Y") %></span>
-							</td>
-
-							<td><%= match.result %></td>
 							
 							<td>
-								<span match_id="<%= match.id %>" data-name="group_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= match.venue.name %></span>
+								<span match_id="<%= match.id %>" data-name="venue_id" class="venue" data-type="select" data-pk="2" data-title="Enter name"><%= match.venue.name %></span>
 							</td>
+							
+							<td>
+								<span match_id="<%= match.id %>" data-name="time" class="time" data-type="text" data-pk="2" data-title="Enter name"><%= match.time.strftime("%T") %></span>
+							</td>
+
+							<td>
+								<span match_id="<%= match.id %>" data-name="date" class="date" data-type="text" data-pk="2" data-title="Enter name"><%= match.date.strftime("%d-%m-%Y") %></span>
+							</td>
+
 
 							<td id="<%= match.id %>" class="delete_match">Delete</td>
 						</tr>
@@ -62,3 +65,5 @@
 		<h4 align="center"><code><%= link_to "New Match", new_match_path %></code></h4>
 
 </div>
+
+<%= render "edit_matches" %>

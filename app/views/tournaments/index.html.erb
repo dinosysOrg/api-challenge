@@ -18,11 +18,12 @@
 							</td>
 							<td><%= tour.created_at %></td>
 							<td id="<%= tour.id %>" class="delete_tournament">Delete</td>
-							<td ><%= link_to "Show", tournament_path(tour) %></td>
+							<td ><%= link_to "Show", tour %></td>
 						</tr>
 					<% end %>
 				</tbody>
 			</table>
 		</div>
+		<h4 align="center"><code><%= link_to "New Tournament", new_tournament_path %></code></h4>
 
 </div>

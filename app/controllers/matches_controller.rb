@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   def index
-  	@matches = Match.order("created_at DESC")
+  	@matches = Match.order("created_at DESC").includes(:group).includes(:tournament).includes(:venue)
   end
 
   def new
@@ -18,7 +18,13 @@ class MatchesController < ApplicationController
 
   def update
   	@match = Match.find(params[:id])
-  	if @match.update_column(params[:name], params[:value])
+    if params[:name] == "result"
+      if @match.update_attributes(result: params[:value])
+        render :json => {status: "success", message: "success"}
+      else
+      render :json => {status: "failed", message: "failed"}
+      end
+  	elsif @match.update_column(params[:name], params[:value])
   		render :json => {status: "success", message: "success"}
     else
       render :json => {status: "failed", message: "failed"}

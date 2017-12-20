@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-
+  root "tournaments#index"
   resources :matches, except: [:show, :destroy, :update, :edit]  
-  post "update_matches", to: "matches#update"
-  post "destroy_matches", to: "matches#destroy"
+  post "update_match", to: "matches#update"
+  post "destroy_match", to: "matches#destroy"
 
   resources :players, except: [:show, :destroy, :update, :edit]  
   post "update_player", to: "players#update"
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post "update_venue", to: "venues#update"
 
 
-  resources :tournaments, except: [:show, :destroy, :update, :edit]
+  resources :tournaments, except: [:destroy, :update, :edit]
   post "destroy_tournament", to: "tournaments#destroy"
   post "update_tournament", to: "tournaments#update"
 end
