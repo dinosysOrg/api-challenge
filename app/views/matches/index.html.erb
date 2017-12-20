@@ -18,6 +18,8 @@
 				</thead>
 				<tbody>
 					<% @matches.each do |match| %>
+						<% result = match.result.split("-") if match.result.include? "-"  %>
+						
 						<tr>
 							<td>
 								<span match_id="<%= match.id %>" data-name="name" class="matches" data-type="text" data-pk="1" data-title="Enter match code"><%= match.name %></span>
@@ -30,20 +32,49 @@
 							<td>
 								<span match_id="<%= match.id %>" data-name="group_id" class="match_group" data-type="select" data-pk="2" data-title="Enter name"><%= match.group.name %></span>
 							</td>
-							
-							<td>
-								<% if Player.find(match.player_id1).nil? %>
-								<% else %>
-									<span match_id="<%= match.id %>" data-name="player_id1" class="player_1" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span>
-								<% end %>
-							</td>
+							<% if result[0] > result[1] %>
+								<td>
+									<% if Player.find(match.player_id1).nil? %>
+									<% else %>
+										<strong><span match_id="<%= match.id %>" data-name="player_id1" class="player_1" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span></strong>
+									<% end %>
+								</td>
 
-							<td>
-								<% if Player.find(match.player_id2).nil? %>
-								<% else %>
-									<span match_id="<%= match.id %>" data-name="player_id2" class="player_2" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span>
-								<% end %>
-							</td>
+								<td>
+									<% if Player.find(match.player_id2).nil? %>
+									<% else %>
+										<span match_id="<%= match.id %>" data-name="player_id2" class="player_2" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span>
+									<% end %>
+								</td>
+							<% elsif result[0] < result[1] %>
+								<td>
+									<% if Player.find(match.player_id1).nil? %>
+									<% else %>
+										<span match_id="<%= match.id %>" data-name="player_id1" class="player_1" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span>
+									<% end %>
+								</td>
+
+								<td>
+									<% if Player.find(match.player_id2).nil? %>
+									<% else %>
+										<strong><span match_id="<%= match.id %>" data-name="player_id2" class="player_2" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span></strong>
+									<% end %>
+								</td>
+							<% else %>
+								<td>
+									<% if Player.find(match.player_id1).nil? %>
+									<% else %>
+										<span match_id="<%= match.id %>" data-name="player_id1" class="player_1" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id1).name %></span>
+									<% end %>
+								</td>
+
+								<td>
+									<% if Player.find(match.player_id2).nil? %>
+									<% else %>
+										<span match_id="<%= match.id %>" data-name="player_id2" class="player_2" data-type="select" data-pk="2" data-title="Enter name"><%= Player.find(match.player_id2).name %></span>
+									<% end %>
+								</td>
+							<% end %>
 
 							<td>
 							<span match_id="<%= match.id %>" data-name="result" class="result" data-type="text" data-pk="2" data-title="Enter result"><%= match.result %></span>
