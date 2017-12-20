@@ -6,7 +6,7 @@ class Player < ApplicationRecord
 	before_create :create_score
 	validates :name, presence: true
 	validates :name, uniqueness: true
-	has_many :matches
+	has_many :matches, dependent: :destroy
 
 	def create_score
 		self.score ||= 0

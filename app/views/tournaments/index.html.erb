@@ -18,7 +18,7 @@
 							</td>
 							<td><%= tour.created_at %></td>
 							<td id="<%= tour.id %>" class="delete_tournament">Delete</td>
-							<td ><%= link_to "Show", tour %></td>
+							<td ><%= link_to "Show", tour  , onclick: "window.location.reload();" %></td>
 						</tr>
 					<% end %>
 				</tbody>

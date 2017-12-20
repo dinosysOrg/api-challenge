@@ -22,7 +22,7 @@
 							</td>
 							<td><%= player.score %></td>
 							<td id="<%= player.id %>" class="delete_player">Delete</td>
-							<td><%= link_to "Show", player %></td>
+							<td><%= link_to "Show", player  , onclick: "window.location.reload();" %></td>
 						</tr>
 					<% end %>
 				</tbody>

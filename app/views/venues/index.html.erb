@@ -16,7 +16,7 @@
 							<td>
 								<span venue_id="<%= venue.id %>" data-name="name" class="venues" data-type="text" data-pk="1" data-title="Enter name"><%= venue.name %></span>
 							</td>
-							<td><%= venue.created_at %></td>
+							<td><%= venue.created_at.strftime("%d-%m-%Y") %></td>
 							<td id="<%= venue.id %>" class="delete_venue">Delete</td>
 						</tr>
 					<% end %>
