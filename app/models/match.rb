@@ -19,13 +19,21 @@ class Match < ApplicationRecord
 			player2_score = result[1]
 			if player1_score > player2_score
 				player1.score += 3
+				player1.win += 1
+				player2.lose += 1
 				player1.save!
+				player2.save!
 			elsif player2_score > player1_score
 				player2.score += 3
+				player2.win += 1
+				player1.lose += 1
+				player1.save!
 				player2.save!
 			elsif player2_score == player1_score
 				player1.score += 1
+				player1.draw += 1
 				player2.score += 1
+				player2.draw += 1
 				player1.save!
 				player2.save!	
 			end
@@ -35,10 +43,16 @@ class Match < ApplicationRecord
 			player2 = Player.find(self.player_id2)
 			if result[0] == player1.name
 				player2.score += 3
+				player2.win += 1
+				player1.lose += 1
+				player1.save!
 				player2.save!
 			elsif result[0] == player2.name
 				player1.score += 3
+				player1.win += 1
+				player2.lose += 1
 				player1.save!
+				player2.save!
 			end
 		end
 	end
@@ -53,13 +67,21 @@ class Match < ApplicationRecord
 			previous_result = previous_result.split("-")
 			if (previous_result[0] > previous_result[1])
 				player1.score -= 3
+				player1.win -= 1
+				player2.lose -= 1
 				player1.save!
+				player2.save!
 			elsif previous_result[0] < previous_result[1]
 				player2.score -= 3
+				player2.win -= 1
+				player1.lose -= 1
+				player1.save!
 				player2.save!
 			else
 				player1.score -= 1
 				player2.score -= 1
+				player1.draw -= 1
+				player2.draw -= 1
 				player1.save!
 				player2.save!
 			end
@@ -67,11 +89,16 @@ class Match < ApplicationRecord
 			previous_result = previous_result.split(" gave")
 			if player1.name == previous_result[0]
 				player2.score -= 3
+				player2.win -= 1
+				player1.lose -= 1
+				player1.save!
 				player2.save!
-
 			elsif player2.name == previous_result[0]
 				player1.score -= 3
+				player1.win -= 1
+				player2.lose -= 1
 				player1.save!
+				player2.save!	
 			end
 			
 		end
@@ -80,13 +107,21 @@ class Match < ApplicationRecord
 			current_result = current_result.split("-")
 			if current_result[0] > current_result[1]
 				player1.score += 3
+				player1.win += 1
+				player2.lose += 1
 				player1.save!
+				player2.save!
 			elsif current_result[0] < current_result[1] 
 				player2.score += 3
+				player2.win += 1
+				player1.lose += 1
+				player1.save!
 				player2.save!
 			else
 				player1.score += 1
+				player1.draw += 1
 				player2.score += 1
+				player2.draw += 1
 				player1.save!
 				player2.save!
 			end
@@ -94,10 +129,16 @@ class Match < ApplicationRecord
 			current_result = current_result.split(" gave")
 			if player1.name == current_result[0]
 				player2.score += 3
+				player2.win += 1
+				player1.lose += 1
 				player2.save!
+				player1.save!
 			elsif player2.name == current_result[0]
 				player1.score += 3
+				player1.win += 1
+				player2.lose += 1
 				player1.save!
+				player2.save!
 			end
 		end
 	end
@@ -109,11 +150,17 @@ class Match < ApplicationRecord
 			result = self.result.split("-")
 			if result[0] > result[1]
 				player1.score -= 3
+				player1.win -= 1
+				player2.lose -= 1
 			elsif result[0] < result[1]
 				player2.score -= 3
+				player2.win -= 1
+				player1.lose -= 1
 			else
 				player1.score -= 1
 				player2.score -= 1
+				player1.draw -= 1
+				player2.draw -= 1
 			end
 			player1.save!
 			player2.save!
@@ -121,8 +168,12 @@ class Match < ApplicationRecord
 			result = self.result.split(" gave")
 			if player1.name == result[0]
 				player2.score -= 3
+				player2.win -= 1
+				player1.lose -= 1
 			elsif player2.name == result[0]
 				player1.score -= 3
+				player1.win -= 1
+				player2.lose -= 1
 			end
 			player1.save!
 			player2.save!

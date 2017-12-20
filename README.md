@@ -2,7 +2,7 @@
 This app is written by Ruby language and RoR framework .
 Set up ruby on rails to run this app via : https://gorails.com/setup/ubuntu/16.04
 
-Clone project from https://github.com/dinosysOrg/api-challenge
+Clone project from https://github.com/diepsohung/api
 Run `bundle install` to install library .
 Run `rake db:create` & `rake db:migrate`
 Start the server by command `rails s` and enjoy the app !!

@@ -5,6 +5,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
+    @matches = Match.where(tournament_id: @tournament.id)
   end
 
   def new

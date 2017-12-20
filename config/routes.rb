@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post "update_match", to: "matches#update"
   post "destroy_match", to: "matches#destroy"
 
-  resources :players, except: [:show, :destroy, :update, :edit]  
+  resources :players, except: [:destroy, :update, :edit]  
   post "update_player", to: "players#update"
   post "destroy_player", to: "players#destroy"
 

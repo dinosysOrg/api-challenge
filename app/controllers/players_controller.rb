@@ -3,6 +3,11 @@ class PlayersController < ApplicationController
     @players = Player.order("score DESC").includes(:group)
   end
 
+  def show
+    @player = Player.find(params[:id])
+    @matches = Match.where(player_id1: @player.id).or(Match.where(player_id2: @player.id))
+  end
+
   def new
     @player = Player.new
   end

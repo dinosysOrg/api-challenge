@@ -8,6 +8,7 @@
 						<th>Group</th>
 						<th>Score</th>
 						<th>Action</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -21,6 +22,7 @@
 							</td>
 							<td><%= player.score %></td>
 							<td id="<%= player.id %>" class="delete_player">Delete</td>
+							<td><%= link_to "Show", player %></td>
 						</tr>
 					<% end %>
 				</tbody>

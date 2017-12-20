@@ -65,98 +65,68 @@
 	    }
 		})
 
-	$(".tournament_group").editable({
-			url: "/update_match",
-			type: 'post',
-			source: [
-              <% Tournament.all.each do |tour| %>
-              	{value: "<%= tour.id %>", text: "<%= tour.name %>"},
-              <% end %>
-           ],
-			params: function(params){
-                var match_id = $(this).attr("match_id");
-                params.id = match_id;
-                return params;                
-			},
-	    success: (response) => {
-	        if (response.status == "success") {
-	            swal(
-	                'Wohooo!',
-	                response.message,
-	                'success'
-	            )
+	// $(".tournament_group").editable({
+	// 		url: "/update_match",
+	// 		type: 'post',
+	// 		source: [
+ //              <% Tournament.all.each do |tour| %>
+ //              	{value: "<%= tour.id %>", text: "<%= tour.name %>"},
+ //              <% end %>
+ //           ],
+	// 		params: function(params){
+ //                var match_id = $(this).attr("match_id");
+ //                params.id = match_id;
+ //                return params;                
+	// 		},
+	//     success: (response) => {
+	//         if (response.status == "success") {
+	//             swal(
+	//                 'Wohooo!',
+	//                 response.message,
+	//                 'success'
+	//             )
 
-	        } else {
-	            swal(
-	                'Oops...',
-	                response.message,
-	                'error'
-	            )
-	        }
-	    }
-		})
+	//         } else {
+	//             swal(
+	//                 'Oops...',
+	//                 response.message,
+	//                 'error'
+	//             )
+	//         }
+	//     }
+	// 	})
 
-	$(".match_group").editable({
-			url: "/update_match",
-			type: 'post',
-			source: [
-              <% Group.all.each do |group| %>
-              	{value: "<%= group.id %>", text: "<%= group.name %>"},
-              <% end %>
-           ],
-			params: function(params){
-                var match_id = $(this).attr("match_id");
-                params.id = match_id;
-                return params;                
-			},
-	    success: (response) => {
-	        if (response.status == "success") {
-	            swal(
-	                'Wohooo!',
-	                response.message,
-	                'success'
-	            )
+	// $(".match_group").editable({
+	// 		url: "/update_match",
+	// 		type: 'post',
+	// 		source: [
+ //              <% Group.all.each do |group| %>
+ //              	{value: "<%= group.id %>", text: "<%= group.name %>"},
+ //              <% end %>
+ //           ],
+	// 		params: function(params){
+ //                var match_id = $(this).attr("match_id");
+ //                params.id = match_id;
+ //                return params;                
+	// 		},
+	//     success: (response) => {
+	//         if (response.status == "success") {
+	//             swal(
+	//                 'Wohooo!',
+	//                 response.message,
+	//                 'success'
+	//             )
 
-	        } else {
-	            swal(
-	                'Oops...',
-	                response.message,
-	                'error'
-	            )
-	        }
-	    }
-		})
+	//         } else {
+	//             swal(
+	//                 'Oops...',
+	//                 response.message,
+	//                 'error'
+	//             )
+	//         }
+	//     }
+	// 	})
 
-	$(".player_1,.player_2").editable({
-			url: "/update_match",
-			type: 'post',
-			source: [
-              <% Player.all.each do |player| %>
-              	{value: "<%= player.id %>", text: "<%= player.name %>"},
-              <% end %>
-           ],
-			params: function(params){
-                var match_id = $(this).attr("match_id");
-                params.id = match_id;
-                return params;                
-			},
-	    success: (response) => {
-	        if (response.status == "success") {
-	            swal(
-	                'Wohooo!',
-	                response.message,
-	                'success'
-	            )
-
-	        } else {
-	            swal(
-	                'Oops...',
-	                response.message,
-	                'error'
-	            )
-	        }
-	    }
-		})
 
 	$(".venue").editable({
 			url: "/update_match",
