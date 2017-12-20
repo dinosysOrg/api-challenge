@@ -17,7 +17,7 @@ class PlayersController < ApplicationController
     if @player.save
       redirect_to players_path
     else
-      render :json => {status: "failed", message: @player.errors}
+      render 'new'
     end
   end
 

@@ -3,5 +3,6 @@ class Tournament < ApplicationRecord
 	extend FriendlyId
   friendly_id :name , use: [:slugged, :finders]
 	
+	validates :name, uniqueness: true
 	validates :name , presence: true
 end

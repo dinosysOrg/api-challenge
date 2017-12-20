@@ -12,7 +12,7 @@ class MatchesController < ApplicationController
   	if @match.save
       redirect_to matches_path
     else
-      render :json => {status: "failed", message: @match.errors}
+      render 'new'
     end
   end
 

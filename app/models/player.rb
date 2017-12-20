@@ -5,6 +5,7 @@ class Player < ApplicationRecord
 	belongs_to :group
 	before_create :create_score
 	validates :name, presence: true
+	validates :name, uniqueness: true
 	has_many :matches
 
 	def create_score

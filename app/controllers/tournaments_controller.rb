@@ -15,9 +15,9 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(tournament_params)
     if @tournament.save
-      render :json => {status: "success", message: "success"}
+      redirect_to tournaments_path
     else
-      render :json => {status: "failed", message: @tournament.errors}
+      render 'new'
     end
   end
 

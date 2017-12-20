@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to groups_path
     else
-      render :json => {status: "failed", message: @group.errors}
+      render 'new'
     end
   end
 
