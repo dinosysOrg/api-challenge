@@ -10,6 +10,7 @@
 						<th >Tournament</th>
 						<th >Created at</th>
 						<th>Action</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,6 +24,7 @@
 							</td>
 							<td><%= group.created_at.strftime("%d-%m-%Y") %></td>
 							<td id="<%= group.id %>" class="delete_group">Delete</td>
+							<td ><%= link_to "Show", group %></td>
 						</tr>
 					<% end %>
 				</tbody>

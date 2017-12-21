@@ -40,6 +40,11 @@ class MatchesController < ApplicationController
   	end
   end
 
+  def import
+      Match.import(params[:file])
+      redirect_to matches_path, notice: "Imported"
+  end
+
   private
   def match_params
   	params.require(:match).permit(:name, :tournament_id, :player_id1, :player_id2, :time , :date, :venue_id, :result, :group_id)

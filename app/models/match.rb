@@ -1,4 +1,5 @@
 class Match < ApplicationRecord
+	require 'csv'
 	after_create :winner_have_3
 	after_update :update_score , if: :saved_change_to_result?
 	after_destroy :reduce_score
@@ -9,6 +10,60 @@ class Match < ApplicationRecord
 	validates :player_id1 , presence: true
 	validates :player_id2 , presence: true
 	validates :result, presence: true
+	def self.import(file)
+		tournament_name = file.original_filename.split(".")[0]
+		tournament =  Tournament.where(name: tournament_name)
+		if tournament.empty?
+			Tournament.create!(name: tournament_name)
+			tournament = Tournament.last
+		else
+			tournament = tournament.first
+		end
+		CSV.foreach(file.path, headers: true) do |row|
+			match_hash = row.to_hash
+			m = Match.new
+			m.name = match_hash["match_code"]
+			m.tournament_id = tournament.id
+			
+			group = Group.where(name: match_hash["group"])
+			if group.empty?
+				tournament.groups.create(name: match_hash["group"])
+				m.group_id = Group.last.id
+			else
+				m.group_id = group.first.id
+			end
+			
+			venue = Venue.where(name: match_hash["venue"])
+			if venue.empty?
+				Venue.create!(name: match_hash["venue"])
+				m.venue_id = Venue.last.id
+			else
+				m.venue_id = venue.first.id
+			end
+
+			player1 = Player.where(name: match_hash["player_id1"], group_id: m.group_id)
+			if player1.empty?
+				Player.create!(group_id: m.group_id, name: match_hash["player_id1"], score: 0, win: 0, draw: 0,lose: 0)
+				m.player_id1 = Player.last.id
+			else
+				m.player_id1 = player1.first.id
+			end
+
+			player2 = Player.where(name: match_hash["player_id2"], group_id: m.group_id)
+			if player2.empty?
+				Player.create!(group_id: m.group_id, name: match_hash["player_id2"], score: 0, win: 0, draw: 0,lose: 0)
+				m.player_id2 = Player.last.id
+			else
+				m.player_id2 = player2.first.id
+			end
+
+			m.time = match_hash["time"]
+			m.date = match_hash["date"]
+			m.result = match_hash["result"]
+			m.save!
+		end
+	end
+
 
 	def winner_have_3
 		if self.result.include? "-"
@@ -29,11 +84,13 @@ class Match < ApplicationRecord
 				player1.lose += 1
 				player1.save!
 				player2.save!
-			elsif player2_score == player1_score
-				player1.score += 1
-				player1.draw += 1
-				player2.score += 1
-				player2.draw += 1
+			elsif !player1.nil? && !player2.nil? 
+				if player2_score == player1_score
+					player1.score += 1
+					player1.draw += 1
+					player2.score += 1
+					player2.draw += 1
+				end
 				player1.save!
 				player2.save!	
 			end

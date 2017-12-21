@@ -19,13 +19,13 @@
 				<tbody>
 					<% @matches.each do |match| %>
 						<% result = match.result.split("-") if match.result.include? "-"  %>
-						
 						<tr>
 							<td>
 								<span match_id="<%= match.id %>" data-name="name" class="matches" data-type="text" data-pk="1" data-title="Enter match code"><%= match.name %></span>
 							</td>
 
 							<td>
+								
 								<span match_id="<%= match.id %>" data-name="tournament_id" class="tournament_group" data-type="select" data-pk="2" data-title="Enter name"><%= match.tournament.name %></span>
 							</td>
 
@@ -104,3 +104,15 @@
 </div>
 
 <%= render "edit_matches" %>
+<div class="container">
+	
+	<h3><code>Import a CSV File</code></h3>
+	  <%= form_tag import_matches_path, multipart: true do %>
+	  	<div class="row">
+			<div class="form-group col-lg-3">
+	    	<%= file_field_tag :file , class: "form-control" %><br>
+	    	<%= submit_tag "Go" , class: "btn btn-success" %>
+			</div>
+		</div>
+	  <% end %>
+</div>

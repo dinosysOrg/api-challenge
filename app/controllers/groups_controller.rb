@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group , only: [:edit, :destroy]
+  before_action :set_group , only: [:show, :edit, :destroy]
   def index
     @groups = Group.all
   end
@@ -15,6 +15,10 @@ class GroupsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show
+    @players = Player.where(group_id: @group.id)
   end
 
   def edit

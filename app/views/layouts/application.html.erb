@@ -43,6 +43,21 @@
         </ul>
       </div>
     </nav>
+  <% flash.each do |key,msg| %>
+        <% if key == "notice" || key == "alert" %>
+
+          <div class="alert alert-info" style="text-align: center;">
+              <%= msg %>
+          </div>
+
+        <% else %>
+
+          <div class="alert alert-<%= key %>" style="text-align: center;">
+              <%= msg %>
+          </div>
+
+        <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root "tournaments#index"
-  resources :matches, except: [:show, :destroy, :update, :edit]  
+  root "matches#index"
+
+  resources :matches, except: [:show, :destroy, :update, :edit] do
+    collection {post :import}    
+  end  
   post "update_match", to: "matches#update"
   post "destroy_match", to: "matches#destroy"
 
@@ -8,7 +11,7 @@ Rails.application.routes.draw do
   post "update_player", to: "players#update"
   post "destroy_player", to: "players#destroy"
 
- 	resources :groups, except: [:show, :destroy, :update, :edit]
+ 	resources :groups, except: [:destroy, :update, :edit]
   post "update_group", to: "groups#update"
   post "destroy_group", to: "groups#destroy"
 

@@ -5,10 +5,10 @@ class Player < ApplicationRecord
 	belongs_to :group
 	has_many :matches
 	
-	before_create :create_score
+	after_create :create_score
 	after_destroy :delete_relation_matches
 	validates :name, presence: true
-	validates :name, uniqueness: true
+	validates :name, uniqueness: {scope: :group_id}
 
 	def create_score
 		self.score ||= 0
