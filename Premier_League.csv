@@ -1,0 +1,5 @@
+match_code,group,player_id1,player_id2,result,venue,time,date
+A1,H123,Chelsea,Arsenal,3-2,My house,15:00:00,15/08/2017
+A2,H123,West Ham,Manchester United,1-4,My garden,15:00:00,15/08/2017
+A3,H123,West Brom,Stoke City,4-3,IT Stadium ,15:00:00,15/08/2017
+A4,H123,Tottenham,Manchester City,1-0,My Dinh,15:00:00,15/08/2017

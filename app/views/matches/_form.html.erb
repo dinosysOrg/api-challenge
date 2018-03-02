@@ -1,0 +1,85 @@
+<div class="container">
+<%= form_for(@match) do |f| %>
+	<% if @match.errors.any? %>
+		<% @match.errors.full_messages.each do |mes| %>
+				<div class="alert alert-danger">
+					<%= mes %>
+				</div>
+		<% end %>
+	<% end %>
+
+	<div class="row" >
+			<div class="col-xs-4">
+			<h4><code style="color: purple; "><%= f.label :name, "Match Code (*)" %></code></h4>
+				<%= f.text_field :name , class: "form-control" %><br>
+			</div>
+	</div>
+	
+	<div class="row" >
+			<div class="col-xs-4">
+				<h4><code style="color: purple;"><%= f.label :tournament , "Tournament (*)"%></code></h4>
+				<%= f.collection_select :tournament_id, Tournament.order(:created_at), :id, :name , { prompt: "--- Select Tournament ---"}, {class: "form-control"}%>
+			</div>
+
+	</div>
+
+	<div class="row" >
+			<div class="col-xs-4">
+				<h4><code style="color: purple;"><%= f.label :group , "Group (*)"%></code></h4>
+				<%= f.collection_select :group_id, Group.order(:name), :id, :name , { prompt: "--- Select Group ---"}, {class: "form-control"}%>
+			</div>
+
+	</div>
+
+	<div class="row" >
+			<div class="col-xs-4">
+				<h4><code style="color: purple;"><%= f.label :player1 , "Player 1 (*)"%></code></h4>
+				<%= f.collection_select :player_id1, Player.order(:name), :id, :name , { prompt: "--- Select Player ---"}, {class: "form-control"}%>
+			</div>
+
+	</div>
+
+	<div class="row" >
+			<div class="col-xs-4">
+				<h4><code style="color: purple;"><%= f.label :tournament , "Player 2 (*)"%></code></h4>
+				<%= f.collection_select :player_id2, Player.order(:name), :id, :name , { prompt: "--- Select Player ---"}, {class: "form-control"}%>
+			</div>
+
+	</div>
+
+	<div class="row" >
+			<div class="col-xs-4">
+			<h4><code style="color: purple; "><%= f.label :result, "Result (*)" %></code></h4>
+				<%= f.text_field :result , class: "form-control" %><br>
+			</div>
+	</div>
+
+	<div class="row" >
+			<div class="col-xs-4">
+			<h4><code style="color: purple; "><%= f.label :time, "Time (*)" %></code></h4>
+				<%= f.time_select :time , class: "form-control" %><br>
+			</div>
+	</div>
+
+	<div class="row" >
+			<div class="col-xs-4">
+			<h4><code style="color: purple; "><%= f.label :date, "Date (*)" %></code></h4>
+				<%= f.date_select :date, class: "form-control" %><br>
+			</div>
+	</div>
+	
+	<div class="row" >
+			<div class="col-xs-4">
+				<h4><code style="color: purple;"><%= f.label :tournament , "Venue (*)"%></code></h4>
+				<%= f.collection_select :venue_id, Venue.order(:name), :id, :name , { prompt: "--- Select Venue ---"}, {class: "form-control"}%>
+				<br>
+				<%= f.submit "Go", class: "btn btn-success" %>
+			</div>
+	</div>
+
+
+	<br><br>
+<% end %>
+
+</div>
+

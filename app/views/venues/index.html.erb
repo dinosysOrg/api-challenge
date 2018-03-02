@@ -1,0 +1,96 @@
+<div style="padding: 10px">
+				
+		<h3 align="center"><code>All Venues</code></h3>
+		<div class="table-responsive">
+			<table id="table_venue" class="table table-striped table-bordered">
+				<thead style="color: green">
+					<tr>
+						<th >Name</th>
+						<th >Created at</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @venues.each do |venue| %>
+						<tr>
+							<td>
+								<span venue_id="<%= venue.id %>" data-name="name" class="venues" data-type="text" data-pk="1" data-title="Enter name"><%= venue.name %></span>
+							</td>
+							<td><%= venue.created_at.strftime("%d-%m-%Y") %></td>
+							<td id="<%= venue.id %>" class="delete_venue">Delete</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<h4 align="center"><code><%= link_to "New Venue", new_venue_path %></code></h4>
+</div>
+
+<script>
+	$(".delete_venue").click(function() {
+    swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result) {
+            $.ajax({
+                type: "POST",
+                url: "/destroy_venue",
+                data: {
+                    id: this.id
+                },
+                success: (response) => {
+                    if (response.status == "success") {
+                        swal(
+                            'Wohooo!',
+                            response.message,
+                            'success'
+                        )
+
+                        $(this).parent().fadeOut();
+                    } else {
+                        swal(
+                            'Oops...',
+                            response.message,
+                            'error'
+                        )
+                    }
+                }
+            });
+                       
+        }
+    })
+});
+
+
+	$(".venues").editable({
+			url: "/update_venue",
+			type: 'post',
+			params: function(params){
+                var venue_id = $(this).attr("venue_id");
+                params.id = venue_id;
+                return params;                
+			},
+	    success: (response) => {
+	        if (response.status == "success") {
+	            swal(
+	                'Wohooo!',
+	                response.message,
+	                'success'
+	            )
+
+	        } else {
+	            swal(
+	                'Oops...',
+	                response.message,
+	                'error'
+	            )
+	        }
+	    }
+		})
+</script>
