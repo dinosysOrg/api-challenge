@@ -1,7 +1,7 @@
 class CreateMatchRules < ActiveRecord::Migration[5.1]
   def change
     create_table :match_rules do |t|
-      t.string :name
+      t.string :name, index: true
       t.integer :winner_point
       t.integer :looser_point
       t.integer :drawer_point

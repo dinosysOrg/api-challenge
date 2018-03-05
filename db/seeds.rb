@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# insert data to match_rules
+MatchRule.create(
+    name: 'round',
+    winner_point: 3,
+    looser_point: 0,
+    drawer_point: 1,
+    is_knockout: false
+)
