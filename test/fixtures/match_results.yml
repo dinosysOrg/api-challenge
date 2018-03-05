@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match_id: 1
+  player_1_goals: 1
+  player_2_goals: 1
+  gave_up_player_id: 1
+
+two:
+  match_id: 1
+  player_1_goals: 1
+  player_2_goals: 1
+  gave_up_player_id: 1

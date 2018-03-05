@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  winner_point: 1
+  looser_point: 1
+  drawer_point: 1
+  name: MyString
+  is_knockout: false
+
+two:
+  winner_point: 1
+  looser_point: 1
+  drawer_point: 1
+  name: MyString
+  is_knockout: false
