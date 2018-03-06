@@ -12,6 +12,7 @@ class MatchesController < ApplicationController
       render json: { success: true, matches: tournament.matches.as_json(include: %i[group venue]) }
       return
     end
-    render json: { success: true, matches: player.filter_matches(tournament.id) }
+    tournament_id = tournament ? tournament.id : nil
+    render json: { success: true, matches: player.filter_matches(tournament_id) }
   end
 end
