@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
 
-  def cal_points
+  def statistic
     player = Player.find_by_name(params[:player_name])
     unless player
       render json: { success: false, error: 'Player name is invalid' }
@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
       render json: { success: false, error: 'Tournament name is invalid' }
       return
     end
-    render json: { success: true, points: player.cal_point(tournament.id) }
+    render json: { success: true, statistic: player.statistic(tournament.id) }
 
   end
 end
