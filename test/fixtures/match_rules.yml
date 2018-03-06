@@ -2,8 +2,8 @@
 
 one:
   id: 1
-  winner_point: 1
+  winner_point: 3
   looser_point: 0
-  drawer_point: 3
+  drawer_point: 1
   name: round
   is_knockout: false
