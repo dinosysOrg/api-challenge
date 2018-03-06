@@ -2,14 +2,7 @@
 
 one:
   winner_point: 1
-  looser_point: 1
-  drawer_point: 1
-  name: MyString
-  is_knockout: false
-
-two:
-  winner_point: 1
-  looser_point: 1
-  drawer_point: 1
-  name: MyString
+  looser_point: 0
+  drawer_point: 3
+  name: round
   is_knockout: false

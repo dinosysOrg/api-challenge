@@ -1,17 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  time: 2018-03-05 16:01:47
+  date: '2018-03-05'
+  time: '16:01:47'
+  match_code: A1-1-2
   venue_id: 1
   player_1_id: 1
-  player_2_id: 1
+  player_2_id: 2
+  player_1_goals: 1
+  player_2_goals: 1
+  gave_up_player_id:
   group_id: 1
-  match_rule_id: 1
 
 two:
-  time: 2018-03-05 16:01:47
+  date: '2018-03-05'
+  time: '16:01:47'
+  match_code: 'A1-1-2'
   venue_id: 1
   player_1_id: 1
-  player_2_id: 1
+  player_2_id: 2
+  player_1_goals:
+  player_2_goals:
+  gave_up_player_id: 1
   group_id: 1
-  match_rule_id: 1
