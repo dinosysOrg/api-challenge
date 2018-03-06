@@ -1,3 +1,4 @@
+require 'csv'
 class ImportCSVService
   def self.import(tnm) # tnm is tournament file have be saved after upload
     file_path = Rails.root.join(tnm)
