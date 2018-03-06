@@ -1,52 +1,41 @@
-# API Challenge
+# General
 
-We kindly ask you to spend no more than a few hours on this exercise, as we value your time and are happy to leave things open to discussion in the final round of interview.
+* This website is built based on Ruby on Rails framework (Ruby 2.3.4p301 and Rails 5.1.5)
+* Describe about soccer tournament purpose
 
-Please use whatever programming language and framework you feel the most comfortable with.
+## Prepare running website
+Make sure you have installed Ruby and Postgresql
+## Build website
+1. Cloning source from https://github.com/nhoxtien2010/api-challenge.git
+2. Install depended gems by run: bundle install
+3. Config connect database on config/database.yml (some thing similar database.sample.yml)
+4. Init database:
+..1. Manual build:
+... Run these commands by orders: rake db:create, rake db:migrate, rake db:seed
+..2. Auto build:
+... Run command: rake tournament:setup
 
-Feel free to email us if you have any questions.
 
-## Project description
+If you want to import from simple sample CSV file run: rake db:import_from_csv
 
-We are building a football tournament management system for our client. Our client has been managing their data in CSV files. We need to provide a system for them to upload their existing data.
 
-### What your API must do:
+## Usages
+| method | url                    | param                        | description                                                                                                                                                                                            |
+|--------|------------------------|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| post   | /import_csv            | upload_file                  | Import one tournament by upload CSV file, you can view sample: tournament 9 ball.csv ,tournament 10 ball.csv                                                                                           |
+| GET    | /players/statistic     | player_name, tournament_name | Get statistic of 1 player (number of won matches, lost matches, drawn matches by player name, loose, total_points)                                                                                     |
+| GET    | /tournaments/statistic | tournament_name              | Get statistic of all player                                                                                                                                                                            |
+| GET    | /filter_matches        | player_name, tournament_name | query matches, filter by player name or tournament name. If you wan to query by player just send only player_name , query by only tournament just send only tournament_name, or query by both 2 params |
 
-Features:
+### A couple special things.
+This app build on postgresql, all foreign key was indexed for performance purpose
+Some column query more often (exp: name...) are indexed too
+When we create a match record on table matches, database will auto insert to table match_records by trigger
+This app was built in short time so maybe the performance is not good, we can optimize query be create one more table to save 
+the statistic of each player. If we do that, we have a couple triggers to auto update this table when insert or update match. The performance will be increase because we just need query from the statistic table instead join and calculate from match_records. 
 
-- User can upload a list of matches for a tournament. Sample CSV input named `tournament 9 ball.csv` and `tournament 10 ball.csv` are included in this repo.
-- Structure the data in a relational database.
-- Calculate points for each player. A player gets 3 points by winning, 0 point by losing and 1 point with a draw match. If a player gives up, the opponent gets 3 points.
-- User can query matches, filter by player name or tournament name.
-- User can query points and number of won matches, lost matches, drawn matches by player name.
-- The actual API endpoint names and request & response format are up to you.
 
-Your application should be easy to set up, and should not require any non open-source software.
 
-### Documentation:
 
-Please modify README.md to add:
 
-- Instructions on how to build/run your application.
-- Instructions on how we can verify the correctness of your application.
-- A paragraph or two about what you are particularly proud of in your implementation, and why.
 
-### Submission Instructions
-
-1. Fork this project on GitHub. You will need to create an account if you don't already have one.
-1. Complete the project as described below within your fork.
-1. Push all of your changes to your fork on github and submit a pull request.
-1. Please also send an email to let us know that you have submitted a solution. Make sure to include your github username in your email (so we can match applicants with pull requests.)
-
-Alternatively, if you don't want to submit your assignment publicly, you can email a patch file to us.
-
-### Evaluation
-
-Evaluation of your submission will be based on the following criteria:
-
-1. Did you follow the instructions for submission?
-1. Did you document your build/deploy instructions and your explanation of what you did well?
-1. Does your API work correctly?
-1. Was your code easy to understand to the reviewer?
-1. What design decisions did you make when designing your models/entities? Why (i.e. were they explained?)
-1. Was your app tested?
