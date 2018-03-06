@@ -20,6 +20,6 @@ class TournamentsController < ApplicationController
       render json: { success: false, error: 'Invalid player tournament name' }
       return
     end
-    render json: { success: true, statistic: tournament.statistic(tournament.id) }
+    render json: { success: true, statistic: tournament.statistic }
   end
 end

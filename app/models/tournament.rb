@@ -2,7 +2,7 @@ class Tournament < ApplicationRecord
   has_many :groups
   has_many :matches, through: :groups
 
-  def statistic(tournament_id)
+  def statistic
     result = self.class.connection.exec_query <<-SQL
       SELECT p.id, p.name, sum(
           case when m.win then m2.winner_point
@@ -21,7 +21,7 @@ class Tournament < ApplicationRecord
       left join matches ma on ma.id = m.match_id
       left join groups g on g.id = ma.group_id
       left join tournaments t on t.id = g.tournament_id
-      where t.id = #{tournament_id}
+      where t.id = #{id}
       group by p.id, p.name
       order by sum(
         case when m.win then m2.winner_point
