@@ -5,14 +5,14 @@ class CreateTriggerToUpdateMatchRecords < ActiveRecord::Migration[5.1]
       DECLARE match_rule_id integer;
       BEGIN
         select id into match_rule_id from match_rules limit 1;
-        IF NEW.gave_up_player_id notnull THEN
+        IF (NEW.gave_up_player_id notnull) THEN
           insert into match_records(match_id, player_id, match_rule_id, win, loose, draw, created_at, updated_at)
           values(NEW.id, NEW.player_1_id, match_rule_id, NEW.gave_up_player_id <> NEW.player_1_id, NEW.gave_up_player_id = NEW.player_1_id, null, NEW.created_at, NEW.updated_at),
             (NEW.id, NEW.player_2_id, match_rule_id, NEW.gave_up_player_id <> NEW.player_2_id, NEW.gave_up_player_id = NEW.player_2_id, null, NEW.created_at, NEW.updated_at);
         ELSE
           insert into match_records(match_id, player_id, match_rule_id, win, loose, draw, created_at, updated_at)
-          values(NEW.id, NEW.player_1_id, match_rule_id, NEW.player_1_id > NEW.player_2_id, NEW.player_1_id < NEW.player_2_id, NEW.player_1_id = NEW.player_2_id, NEW.created_at, NEW.updated_at),
-            (NEW.id, NEW.player_2_id, match_rule_id, NEW.player_1_id < NEW.player_2_id, NEW.player_1_id > NEW.player_2_id, NEW.player_1_id = NEW.player_2_id, NEW.created_at, NEW.updated_at);
+          values(NEW.id, NEW.player_1_id, match_rule_id, (NEW.player_1_goals > NEW.player_2_goals), (NEW.player_1_goals < NEW.player_2_goals), (NEW.player_1_goals = NEW.player_2_goals), NEW.created_at, NEW.updated_at),
+            (NEW.id, NEW.player_2_id, match_rule_id, (NEW.player_1_goals < NEW.player_2_goals), (NEW.player_1_goals > NEW.player_2_goals), (NEW.player_1_goals = NEW.player_2_goals), NEW.created_at, NEW.updated_at);
         END IF;
       RETURN NULL;
       END;
