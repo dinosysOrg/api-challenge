@@ -1,0 +1,31 @@
+# SQLite version 3.x
+#   gem install
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem '
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  database:
+
+  username: postgres
+  password: postgres
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: football_tournament_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: football_tournament_test
+
+production:
+  <<: *default
+  database: football_tournament_production
