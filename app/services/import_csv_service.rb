@@ -5,6 +5,7 @@ class ImportCSVService
     csv_text = File.read(file_path)
     csv = CSV.parse(csv_text, headers: true)
     tournament_name = tnm.match(/tournament (.*).csv/)[1]
+    match_rule_id = MatchRule.find_by_name('round').id
     tournament = Tournament.find_by_name(tournament_name) || Tournament.create(name: tournament_name)
     csv.each do |row|
       # Moulding.create!(row.to_hash)
@@ -28,19 +29,18 @@ class ImportCSVService
         date: row_data['date']
       )
 
-      match_result = MatchResult.new(match_id: match.id, match_rule_id: MatchRule.find_by_name('round').id)
       goals = row_data['score'].match /(\d+)-(\d+)/
       gave_up_player = row_data['score'].match /(.+) gave up/
 
       if goals
-        match_result.player_1_goals = goals[1]
-        match_result.player_2_goals = goals[2]
+        match.player_1_goals = goals[1]
+        match.player_2_goals = goals[2]
       elsif gave_up_player == player1.name
-        match_result.gave_up_player_id = player1.id
+        match.gave_up_player_id = player1.id
       else
-        match_result.gave_up_player_id = player2.id
+        match.gave_up_player_id = player2.id
       end
-      match_result.save
+      match.save
     end
   end
 end
