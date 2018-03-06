@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-
-two:
-  name: MyString
+  id: 1
+  name: group_1
+  tournament_id: 1
