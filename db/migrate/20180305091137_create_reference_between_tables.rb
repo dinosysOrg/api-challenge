@@ -8,8 +8,6 @@ class CreateReferenceBetweenTables < ActiveRecord::Migration[5.1]
     add_foreign_key :matches, :players, column: :player_1_id
     add_foreign_key :matches, :players, column: :player_2_id
     add_foreign_key :matches, :groups, column: :group_id
-    # for match results
-    add_foreign_key :match_results, :match_rules, column: :match_rule_id
-    add_foreign_key :match_results, :players, column: :gave_up_player_id
+    add_foreign_key :matches, :players, column: :gave_up_player_id
   end
 end
