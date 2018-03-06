@@ -20,9 +20,11 @@ class Player < ApplicationRecord
 
   def filter_matches(tournament_id = nil)
     if tournament_id
-      Match.joins('join groups g on g.id = matches.group_id').where("(player_1_id = #{id} or player_2_id = #{id}) and tournament_id = #{tournament_id}")
+      Match.joins('join groups g on g.id = matches.group_id')
+           .where("(player_1_id = #{id} or player_2_id = #{id}) and tournament_id = #{tournament_id}")
+           .as_json(include: %i[venue group])
     else
-      Match.where("player_1_id = #{id} or player_2_id = #{id}")
+      Match.where("player_1_id = #{id} or player_2_id = #{id}").as_json(include: %i[venue group])
     end
   end
 end

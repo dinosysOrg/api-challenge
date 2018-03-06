@@ -20,8 +20,8 @@ class PlayerTest < ActiveSupport::TestCase
     assert player2.filter_matches.size == 2
     matches = player1.filter_matches
     # test info of match
-    first_match = matches.detect { |m| m.id == 1 }
-    assert first_match.player_1_goals == 1
-    assert first_match.player_2_goals == 1
+    first_match = matches.detect { |m| m['id'] == 1 }
+    assert first_match['player_1_goals'] == 1
+    assert first_match['player_2_goals'] == 1
   end
 end

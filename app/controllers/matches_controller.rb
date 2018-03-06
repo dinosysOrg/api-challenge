@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
       return
     end
     unless player
-      render json: { success: true, matches: tournament.matches }
+      render json: { success: true, matches: tournament.matches.as_json(include: %i[group venue]) }
       return
     end
     render json: { success: true, matches: player.filter_matches(tournament.id) }
