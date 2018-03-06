@@ -17,4 +17,12 @@ class Player < ApplicationRecord
     SQL
     result.to_a.first['total_points']
   end
+
+  def filter_matches(tournament_id = nil)
+    if tournament_id
+      Match.joins('join groups g on g.id = matches.group_id').where("(player_1_id = #{id} or player_2_id = #{id}) and tournament_id = #{tournament_id}")
+    else
+      Match.where("player_1_id = #{id} or player_2_id = #{id}")
+    end
+  end
 end
