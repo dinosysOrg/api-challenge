@@ -19,7 +19,7 @@ class ImportCSVService
       # create venue
       venue = Venue.find_by_name( row_data['venue']) || Venue.create(name: row_data['venue'])
       # create match
-      match = Match.create(
+      match = Match.new(
         match_code: row_data['match code'],
         venue_id: venue.id,
         player_1_id: player1.id,
