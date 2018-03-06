@@ -11,17 +11,18 @@ Make sure you have installed Ruby and Postgresql
 3. Config connect database on config/database.yml (some thing similar database.sample.yml)
 4. Init database:
     1. Manual build:
-        Run these commands by orders: rake db:create, rake db:migrate, rake db:seed
+        Run follow commands by orders: rake db:create, rake db:migrate, rake db:seed
     2. Auto build:
-        Run command: rake tournament:setup
+Run command: rake tournament:setup
 
 
 If you want to import from simple sample CSV file run: rake db:import_from_csv
 
+
 ## Usages
 | method | url                    | param                        | description                                                                                                                                                                                            |
 |--------|------------------------|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| post   | /import_csv            | upload_file                  | Import one tournament by upload CSV file, you can view sample: tournament 9 ball.csv ,tournament 10 ball.csv                                                                                           |
+| POST   | /import_csv            | upload_file                  | Import one tournament by upload CSV file, you can view sample: tournament 9 ball.csv ,tournament 10 ball.csv                                                                                           |
 | GET    | /players/statistic     | player_name, tournament_name | Get statistic of 1 player (number of won matches, lost matches, drawn matches by player name, loose, total_points)                                                                                     |
 | GET    | /tournaments/statistic | tournament_name              | Get statistic of all player                                                                                                                                                                            |
 | GET    | /filter_matches        | player_name, tournament_name | query matches, filter by player name or tournament name. If you wan to query by player just send only player_name , query by only tournament just send only tournament_name, or query by both 2 params |
