@@ -13,4 +13,13 @@ class TournamentsController < ApplicationController
     logger.debug "Raise exception in tournament controller: #{ex}"
     render json: { success: false, errors: 'Upload file is invalid format' }
   end
+
+  def statistic # statistic all points of each player
+    tournament = Tournament.find_by_name(params[:tournament_name])
+    unless tournament
+      render json: { success: false, error: 'Invalid player tournament name' }
+      return
+    end
+    render json: { success: true, statistic: tournament.statistic(tournament.id) }
+  end
 end
