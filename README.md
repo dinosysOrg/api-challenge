@@ -11,9 +11,10 @@ Make sure you have installed Ruby and Postgresql
 3. Config connect database on config/database.yml (some thing similar database.sample.yml)
 4. Init database:
     1. Manual build:
-        Run follow commands by orders: rake db:create, rake db:migrate, rake db:seed
+        Run follow commands by orders: rake db:create, rake db:migrate, rake db:seed, mkdir public/csv_uploads
     2. Auto build:
-Run command: rake tournament:setup
+        Run command: rake tournament:setup
+5. Start server by command: rails s
 
 
 If you want to import from simple sample CSV file run: rake db:import_from_csv
