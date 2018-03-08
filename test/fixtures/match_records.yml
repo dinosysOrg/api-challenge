@@ -1,0 +1,38 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  match_id: 1
+  player_id: 1
+  match_rule_id: 1
+  win: false
+  loose: false
+  draw: true
+
+two:
+  id: 2
+  match_id: 1
+  player_id: 2
+  match_rule_id: 1
+  win: false
+  loose: false
+  draw: true
+
+three:
+  id: 3
+  match_id: 2
+  player_id: 1
+  match_rule_id: 1
+  win: false
+  loose: true
+  draw: false
+
+four:
+  id: 4
+  match_id: 2
+  player_id: 2
+  match_rule_id: 1
+  win: true
+  loose: false
+  draw: false
+
