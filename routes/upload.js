@@ -15,9 +15,10 @@ const storage = multer.diskStorage({
 const upload = multer({storage}).array('tournaments')
 const match = require('../models/match')
 const player = require('../models/player')
-
+const fs = require('fs')
 router.post('/tournaments', function (req, res, next) {
 	const mysql = req.app.get("mysql");
+	mkdirSync(__dirname + '/../uploads')
   upload(req, res, function (err) {
     if (err) {
       // An error occurred when uploading
@@ -53,4 +54,12 @@ router.post('/tournaments', function (req, res, next) {
   })
 })
 
+
+const mkdirSync = function (dirPath) {
+  try {
+    fs.mkdirSync(dirPath)
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err
+  }
+}
 module.exports = router;
