@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.define(
-    "Statistic",
+    "Statistics",
     {
       id: {
         type: DataTypes.BIGINT,
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
       freezeTableName: true,
       timestamps: false,
-      tableName: "ds_group",
+      tableName: "ds_statistics",
       indexes: [
         {
           unique: true,
@@ -29,9 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Model.associate = ({ Statistic, Player, Match }) => {
-    Statistic.belongsTo(Player);
-    Statistic.belongsTo(Match);
+  Model.associate = ({ Statistics, Player, Match }) => {
+    Statistics.belongsTo(Player);
+    Statistics.belongsTo(Match);
   };
 
   return Model;

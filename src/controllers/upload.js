@@ -59,18 +59,24 @@ module.exports.save = async (req, res, next) => {
 
     for (let i = 0; i < totalRows; i++) {
       const currentRow = res.parsedRows[i];
+      const matchCode = currentRow["match code"];
       // Prepare data to create match
       const matchAttributes = {
         group_id: (await resolveGroup(currentRow.group, Group)).id,
         venue_id: (await resolveVenue(currentRow.group, Venue)).id,
         player_1_id: (await resolvePlyer(currentRow["player 1"], Player)).id,
         player_2_id: (await resolvePlyer(currentRow["player 2"], Player)).id,
-        code: currentRow["match code"],
+        code: matchCode,
         start_at: formatDatetime(currentRow.date, currentRow.time),
         score: currentRow.score
       };
       // Push the promise to queue
-      queue.push(resolveMatch(matchAttributes, Match).catch(() => {}));
+      queue.push(
+        resolveMatch(matchAttributes, Match).catch((error) => {
+          console.log(error)
+          failed.push(matchCode);
+        })
+      );
     }
     // If error was occured, null will be return
     // Just filter to return it

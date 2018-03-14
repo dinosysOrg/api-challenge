@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
-const { Op } = Sequelize;
 
 const { queryLimit } = require("../settings");
+const { Op } = Sequelize;
 
 module.exports.findAll = async (req, res, next) => {
   const { code, player1Name, player2Name } = req.query;

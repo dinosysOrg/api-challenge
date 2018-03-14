@@ -54,9 +54,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Model.associate = ({ Match, Player, Group, Venue }) => {
+  Model.associate = ({ Match, Player, Group, Venue, Statistics }) => {
     Match.belongsTo(Player, { as: "Player1", foreignKey: "player_1_id" });
     Match.belongsTo(Player, { as: "Player2", foreignKey: "player_2_id" });
+    Match.belongsTo(Group);
+    Match.belongsTo(Venue);
+
+    Match.hasOne(Statistics);
   };
 
   return Model;
