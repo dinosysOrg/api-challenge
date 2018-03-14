@@ -11,19 +11,19 @@ module.exports = {
       },
       group_id: {
         type: Sequelize.BIGINT(11),
-        allowNull: false,
+        allowNull: false
       },
       venue_id: {
         type: Sequelize.BIGINT(11),
-        allowNull: false,
+        allowNull: false
       },
       player_1_id: {
         type: Sequelize.BIGINT(11),
-        allowNull: false,
+        allowNull: false
       },
       player_2_id: {
         type: Sequelize.BIGINT(11),
-        allowNull: false,
+        allowNull: false
       },
       code: {
         type: Sequelize.STRING,
@@ -32,15 +32,16 @@ module.exports = {
       },
       start_at: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: false
       },
       score: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: Sequelize.NOW
       },
       updated_at: {
         type: Sequelize.DATE

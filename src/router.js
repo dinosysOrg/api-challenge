@@ -24,14 +24,14 @@ router.post(
   (req, res) => res.json(res.parsed)
 );
 
-// Query matches
-router.get("/matches", matchController.findAll, (req, res) =>
-  res.json(res.matches)
-);
-
 // Query statistic
 router.get("/statistics", statisticsController.findAll, (req, res) =>
   res.json(res.statistics)
+);
+
+// Query matches
+router.get("/matches", matchController.findAll, (req, res) =>
+  res.json(res.matches)
 );
 
 // Export router
