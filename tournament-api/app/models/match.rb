@@ -5,4 +5,12 @@ class Match < ApplicationRecord
   belongs_to :group
   has_many :take_place_matches
   has_many :players, through: :take_place_matches
+
+  ASSIGNABLE_ATRRIBUTES =
+    [
+      "time",
+      "date",
+      "venue",
+      "score"
+    ].freeze
 end
