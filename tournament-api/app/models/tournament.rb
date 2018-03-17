@@ -12,7 +12,7 @@ class Tournament < ApplicationRecord
     PLAYER_HEADER = ["player 1", "player 2"].freeze
 
     def import(file)
-      return unless file
+      return unless file.try(:content_type) == "text/csv"
       tournament_name = file.original_filename.gsub(/\..+/, "").capitalize
       @tournament     = Tournament.where(name: tournament_name).first_or_create
       ActiveRecord::Base.transaction do

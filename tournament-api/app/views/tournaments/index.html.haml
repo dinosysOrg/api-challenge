@@ -1,6 +1,8 @@
-= flash[:notice]
-%div
+.import-csv-form
+  %strong= flash[:notice]
   %h3 Import a CSV File
-  = form_tag import_tournaments_path, multipart: true do
-    = file_field_tag :file
-    = submit_tag "Import CSV"
+  = form_tag import_tournaments_path, multipart: true, class: "form-inline" do
+    .form-group
+      = file_field_tag :file
+    .form-group
+      = submit_tag "Import CSV"
