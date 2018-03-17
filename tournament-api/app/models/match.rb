@@ -24,11 +24,12 @@ class Match < ApplicationRecord
 
   def calc_player_point
     if self.score.include?(GAVE_UP)
-      gave_up_player_name = self.score.gsub(GAVE_UP, "").strip
-      opponent = players.find{ |player| player.name != gave_up_player_name }
-      take_place_match =
+      gave_up_player_name         = self.score.gsub(GAVE_UP, "").strip
+      player_will_be_earned_point =
+        players.find{ |player| player.name != gave_up_player_name }
+      take_place_match            =
         take_place_matches.find{ |take_place_match|
-          take_place_match.player_id == opponent.id
+          take_place_match.player_id == player_will_be_earned_point.id
         }
       take_place_match.update!(point: POINTS[:give_up])
     else

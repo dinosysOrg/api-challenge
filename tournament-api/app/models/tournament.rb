@@ -9,7 +9,7 @@ class Tournament < ApplicationRecord
   class << self
     attr_reader :tournament, :attributes
     attr_reader :group, :match
-    PLAYER_HEADER = ["player 1", "player 2"]
+    PLAYER_HEADER = ["player 1", "player 2"].freeze
 
     def import(file)
       return unless file
@@ -35,8 +35,9 @@ class Tournament < ApplicationRecord
 
       def import_players
         self.attributes.slice(*PLAYER_HEADER).each do |header, player_name|
-          player = self.group.players.where(name: player_name).first_or_create!
+          player = Player.where(name: player_name).first_or_create!
           import_take_place_match(player.id)
+          import_player_in_group(player.id)
         end
       end
 
@@ -55,6 +56,13 @@ class Tournament < ApplicationRecord
       def import_take_place_match(player_id)
         TakePlaceMatch.where(
           match_id: self.match.id,
+          player_id: player_id
+        ).first_or_create!
+      end
+
+      def import_player_in_group(player_id)
+        PlayerInGroup.where(
+          group_id: self.group.id,
           player_id: player_id
         ).first_or_create!
       end
