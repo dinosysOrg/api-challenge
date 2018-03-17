@@ -1,27 +1,18 @@
 class Api::TournamentsController < ApplicationController
+  before_action :init_response_service
+
   def get_matches
-    matches  = []
-    response = []
-    if tournament_name = params[:tournament]
-      tournament = Tournament.find_by_name(tournament_name)
-      matches    = tournament.matches if tournament
-    end
-
-    if player_name = params[:player]
-      player  = Player.find_by_name(player_name)
-      matches = player.matches if player
-    end
-
-    response =
-      matches.includes(:group).map do |match|
-        {
-          group: match.group.name,
-          name:  match.name,
-          date:  match.date.strftime("%a, %d %b %Y"),
-          time:  match.time,
-          venue: match.venue,
-        }
-      end if matches.present?
+    response = @response_service.get_matches
     render json: response
   end
+
+  def get_statistical
+    response = @response_service.get_statistical
+    render json: response
+  end
+
+  private
+    def init_response_service
+      @response_service = Api::TournamentResponseService.new(params)
+    end
 end
