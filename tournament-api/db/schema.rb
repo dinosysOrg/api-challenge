@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315151717) do
+ActiveRecord::Schema.define(version: 20180316122003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180315151717) do
 
   create_table "matches", force: :cascade do |t|
     t.string   "name",       limit: 50,  null: false
-    t.time     "time",                   null: false
+    t.string   "time",       limit: 20,  null: false
     t.date     "date",                   null: false
     t.string   "venue",      limit: 100, null: false
     t.string   "score",      limit: 100, null: false
@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(version: 20180315151717) do
   create_table "take_place_matches", force: :cascade do |t|
     t.integer  "player_id"
     t.integer  "match_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "point",      default: 0
     t.index ["match_id"], name: "index_take_place_matches_on_match_id", using: :btree
     t.index ["player_id"], name: "index_take_place_matches_on_player_id", using: :btree
   end

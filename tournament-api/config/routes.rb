@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tournaments do
+  resources :tournaments, only: [:index] do
     collection { post :import }
   end
 

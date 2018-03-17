@@ -3,7 +3,11 @@ class TournamentsController < ApplicationController
   end
 
   def import
+    message =
+      params[:file] &&
+      "Tournament has been successfully imported" ||
+      "Please choose a file to import"
     Tournament.import(params[:file])
-    redirect_to root_url, notice: "Tournament has been successfully imported."
+    redirect_to root_url, notice: message
   end
 end

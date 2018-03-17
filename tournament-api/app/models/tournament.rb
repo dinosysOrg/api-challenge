@@ -12,15 +12,17 @@ class Tournament < ApplicationRecord
     PLAYER_HEADER = ["player 1", "player 2"]
 
     def import(file)
+      return unless file
       tournament_name = file.original_filename.gsub(/\..+/, "").capitalize
       @tournament     = Tournament.where(name: tournament_name).first_or_create
       ActiveRecord::Base.transaction do
         CSV.foreach(file.path, headers: true, skip_blanks: true) do |row|
           break unless row[0]
           @attributes = row.to_h
-          row_parser
+            row_parser
+            self.match.calc_player_point
         end # end CSV foreach
-      end # end transaction
+      end # end ActiveRecord transaction
     end
 
     private
@@ -28,12 +30,12 @@ class Tournament < ApplicationRecord
         self.tournament
             .groups
             .where(name: self.attributes["group"])
-            .first_or_create
+            .first_or_create!
       end
 
       def import_players
         self.attributes.slice(*PLAYER_HEADER).each do |header, player_name|
-          player = self.group.players.where(name: player_name).first_or_create
+          player = self.group.players.where(name: player_name).first_or_create!
           import_take_place_match(player.id)
         end
       end
@@ -54,7 +56,7 @@ class Tournament < ApplicationRecord
         TakePlaceMatch.where(
           match_id: self.match.id,
           player_id: player_id
-        ).first_or_create
+        ).first_or_create!
       end
 
       def row_parser
