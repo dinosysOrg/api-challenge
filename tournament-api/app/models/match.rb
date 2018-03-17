@@ -34,7 +34,7 @@ class Match < ApplicationRecord
       take_place_match.update!(point: POINTS[:give_up])
     else
       first_player_point, second_player_point = self.score.split("-").map(&:to_i)
-      two_players_are_draw = false
+      two_players_were_drawn = false
 
       case
       when first_player_point > second_player_point
@@ -43,12 +43,23 @@ class Match < ApplicationRecord
         winer, loser = players.reverse
       else
         take_place_matches.update_all(point: POINTS[:draw])
-        two_players_are_draw = true
+        two_players_were_drawn = true
       end
 
       take_place_matches.find{ |take_place_match|
         take_place_match.player_id == winer.id
-      }.update!(point: POINTS[:win]) unless two_players_are_draw
+      }.update!(point: POINTS[:win]) unless two_players_were_drawn
     end
+  end
+
+  def as_json
+    {
+      group:   group.name,
+      name:    self.name,
+      date:    self.date.strftime("%a, %d %b %Y"),
+      time:    self.time,
+      venue:   self.venue,
+      players: players.order(:name).pluck(:name)
+    }
   end
 end

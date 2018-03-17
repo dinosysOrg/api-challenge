@@ -27,16 +27,7 @@ module Api
 
       response =
         Rails.cache.fetch("matches_response_#{cache_key}", expires_in: 10.minutes) do
-          matches.includes(:group, :players).map do |match|
-            {
-              group:   match.group.name,
-              name:    match.name,
-              date:    match.date.strftime("%a, %d %b %Y"),
-              time:    match.time,
-              venue:   match.venue,
-              players: match.players.pluck(:name)
-            }
-          end
+          matches.includes(:group, :players).map{ |match| match.as_json }
         end if matches.present?
 
       response
@@ -49,6 +40,7 @@ module Api
           if player = Player.find_by_name(params[:player])
             response =
               {
+                player: player.name,
                 points: player.take_place_matches.sum(:point)
               }
 

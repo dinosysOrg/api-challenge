@@ -51,6 +51,7 @@ GEM
       will_paginate (>= 3.0.3)
     builder (3.2.3)
     byebug (10.0.0)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -102,6 +103,11 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     pg (0.21.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     puma (3.11.3)
     rack (2.0.4)
     rack-test (0.6.3)
@@ -139,6 +145,7 @@ GEM
     rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
+    rspec-json_expectations (2.1.0)
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
@@ -210,8 +217,10 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pg (~> 0.18)
+  pry-rails
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rspec-json_expectations (~> 2.1)
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   spring
