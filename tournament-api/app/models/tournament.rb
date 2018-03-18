@@ -8,7 +8,7 @@ class Tournament < ApplicationRecord
 
   class << self
     attr_reader :tournament, :attributes
-    attr_reader :group, :match
+    attr_reader :group, :match, :venue
     PLAYER_HEADER = ["player 1", "player 2"].freeze
 
     def import(file)
@@ -33,6 +33,10 @@ class Tournament < ApplicationRecord
             .first_or_create!
       end
 
+      def import_venue
+        Venue.where(name: self.attributes["venue"]).first_or_create!
+      end
+
       def import_players
         self.attributes.slice(*PLAYER_HEADER).each do |header, player_name|
           player = Player.where(name: player_name).first_or_create!
@@ -49,6 +53,7 @@ class Tournament < ApplicationRecord
         attributes_to_be_assigned =
           self.attributes.slice(*Match::ASSIGNABLE_ATRRIBUTES)
         match.assign_attributes(attributes_to_be_assigned)
+        match.venue = self.venue
         match.save!
         match
       end
@@ -69,6 +74,7 @@ class Tournament < ApplicationRecord
 
       def row_parser
         @group = import_group
+        @venue = import_venue
         @match = import_match
         import_players
       end

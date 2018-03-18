@@ -1,9 +1,9 @@
 class Match < ApplicationRecord
   validates :name, :time, :date, :venue, :score, presence: true
   validates :name, length: { maximum: 50 }
-  validates :venue, :score, length: { maximum: 100 }
   validates :time, length: { maximum: 20 }
   belongs_to :group
+  belongs_to :venue
   has_many :take_place_matches, dependent: :destroy
   has_many :players, through: :take_place_matches
 
@@ -11,7 +11,6 @@ class Match < ApplicationRecord
     [
       "time",
       "date",
-      "venue",
       "score"
     ].freeze
   GAVE_UP = "gave up".freeze
@@ -58,8 +57,8 @@ class Match < ApplicationRecord
       name:    self.name,
       date:    self.date.strftime("%a, %d %b %Y"),
       time:    self.time,
-      venue:   self.venue,
-      players: players.order(:name).pluck(:name)
+      venue:   venue.name,
+      players: players.pluck(:name).sort
     }
   end
 end

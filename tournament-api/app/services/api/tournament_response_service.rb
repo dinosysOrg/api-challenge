@@ -27,7 +27,7 @@ module Api
 
       response =
         Rails.cache.fetch("matches_response_#{cache_key}", expires_in: 10.minutes) do
-          matches.includes(:group, :players).map{ |match| match.as_json }
+          matches.includes(:group, :venue, :players).map{ |match| match.as_json }
         end if matches.present?
 
       response
