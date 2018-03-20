@@ -1,0 +1,10 @@
+id,group,match code,player 1,player 2,time,date,venue,score
+1,C1,C1-1-2,Mark Zuckerberg,Eric Schmidt,14:00:00,16/02/2017,Legend,Eric Schmidt gave up
+2,C1,C1-1-3,Mark Zuckerberg,Ruth Porat,16:00:00,14/02/2017,Twins,5-5
+3,C1,C1-2-3,Elon Musk,Sergey Brin,14:00:00,16/02/2017,Legend,Elon Musk gave up
+4,C2,C2-1-2,Elon Musk,Eric Schmidt,18:00:00,16/02/2017,Carmen,5-5
+5,C2,C2-1-3,Elon Musk,Liam Wong,12:00:00,16/02/2017,Twins,6-4
+6,C2,C2-2-3,Eric Schmidt,Liam Wong,14:00:00,15/02/2017,Legend,2-5
+7,C3,C3-1-2,Elon Musk,Lary Page,14:00:00,13/02/2017,Legend,Lary Page gave up
+8,C3,C3-1-3,Sergey Brin,Elon Musk,14:00:00,16/02/2017,Legend,Sergey Brin gave up
+9,C3,C3-1-4,Sergey Brin,Sean Almond,14:00:00,17/02/2017,Legend,Sergey Brin gave up

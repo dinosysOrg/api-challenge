@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: khaile
+  password: 12345678
+
+development:
+  <<: *default
+  database: tournament-api_development
+
+test:
+  <<: *default
+  database: tournament-api_test
+
+production:
+  <<: *default
+  database: tournament-api_production
+  username: khaile
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
