@@ -7,9 +7,9 @@ end
 
 
 gem "rails", "~> 5.1.6"
-gem "sqlite3"
 gem "puma", "~> 3.7"
 gem "jbuilder", "~> 2.5"
+gem "pg", "~> 0.18"
 
 group :test do
   gem "factory_bot_rails", "~> 4.0"
