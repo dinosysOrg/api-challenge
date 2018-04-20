@@ -8,6 +8,8 @@ end
 gem "jbuilder", "~> 2.5"
 gem "pg", "~> 0.18"
 gem "puma", "~> 3.7"
+gem "rack-attack"
+gem "rack-cors"
 gem "rails", "~> 5.1.6"
 
 group :test do

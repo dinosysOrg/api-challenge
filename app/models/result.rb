@@ -8,4 +8,6 @@ class Result < ApplicationRecord
     win: 3,
     draw: 1
   }.freeze
+
+  scope :by_player_name, ->(player_name){includes(:player).where players:{name: player_name}}
 end

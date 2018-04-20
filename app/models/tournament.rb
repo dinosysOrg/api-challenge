@@ -9,18 +9,22 @@ class Tournament < ApplicationRecord
     PLAYER_ATRRIBUTES = ["player 1", "player 2"].freeze
 
     def import_tournament_from_csv csv_file
-      return unless ModelHelper.csv?(csv_file)
+      return unless ModelHelper.csv?(csv_file.path)
       tournament_name = csv_file.original_filename.gsub(/\..+/, "").capitalize
       @tournament = Tournament.where(name: tournament_name).first_or_create
 
       ActiveRecord::Base.transaction do
-        CSV.foreach csv_file, headers: true, skip_blanks: true,
+        CSV.foreach csv_file.path, headers: true, skip_blanks: true,
                               skip_lines: /^(?:,\s*)+$/ do |row|
-          break if row[0].nil? || row.any?(&:nil?)
+          break if row[0].nil? || row.any?(&:blank?)
           @attributes = row.to_h
           row_parser
         end
       end
+      @tournament
+    rescue StandardError => e
+      Rails.logger.error e
+      false
     end
 
     private
