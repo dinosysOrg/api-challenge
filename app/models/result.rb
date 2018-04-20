@@ -1,4 +1,11 @@
 class Result < ApplicationRecord
-  has_one :player, foreign_key: "winner_id", inverse_of: :player, dependent: :destroy
+  belongs_to :player
   belongs_to :match
+
+  GAVE_UP = "gave up".freeze
+  POINTS = {
+    lose: 3,
+    win: 3,
+    draw: 1
+  }.freeze
 end

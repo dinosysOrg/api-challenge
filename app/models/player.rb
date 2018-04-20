@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
   belongs_to :group
-  has_many :matches, dependent: :destroy
-  has_many :results, through: :matches
+  has_many :results, dependent: :destroy
+  has_many :matches, through: :results
 end

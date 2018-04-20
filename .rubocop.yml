@@ -8,6 +8,7 @@ inherit_from:
 
 # Common configuration.
 AllCops:
+  TargetRubyVersion: '2.5'
   # Include gemspec and Rakefile
   Include:
     - '**/*.gemspec'
@@ -333,7 +334,7 @@ Style/MethodDefParentheses:
 
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 10
+  Max: 15
 
 Naming/MethodName:
   EnforcedStyle: snake_case

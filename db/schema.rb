@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418053831) do
+ActiveRecord::Schema.define(version: 20180419231555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,17 +19,21 @@ ActiveRecord::Schema.define(version: 20180418053831) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tournament_id"
+    t.index ["tournament_id"], name: "index_groups_on_tournament_id"
   end
 
   create_table "matches", force: :cascade do |t|
     t.string "code"
-    t.integer "player_1_id"
-    t.integer "player_2_id"
     t.time "time"
     t.date "date"
     t.string "venue"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tournament_id"
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_matches_on_group_id"
+    t.index ["tournament_id"], name: "index_matches_on_tournament_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -41,12 +45,14 @@ ActiveRecord::Schema.define(version: 20180418053831) do
   end
 
   create_table "results", force: :cascade do |t|
-    t.bigint "winner_id"
+    t.bigint "player_id"
     t.bigint "match_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score"
+    t.integer "point"
     t.index ["match_id"], name: "index_results_on_match_id"
-    t.index ["winner_id"], name: "index_results_on_winner_id"
+    t.index ["player_id"], name: "index_results_on_player_id"
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -55,7 +61,10 @@ ActiveRecord::Schema.define(version: 20180418053831) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "groups", "tournaments"
+  add_foreign_key "matches", "groups"
+  add_foreign_key "matches", "tournaments"
   add_foreign_key "players", "groups"
   add_foreign_key "results", "matches"
-  add_foreign_key "results", "players", column: "winner_id"
+  add_foreign_key "results", "players"
 end
