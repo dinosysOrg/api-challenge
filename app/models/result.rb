@@ -4,7 +4,7 @@ class Result < ApplicationRecord
 
   GAVE_UP = "gave up".freeze
   POINTS = {
-    lose: 3,
+    lose: 0,
     win: 3,
     draw: 1
   }.freeze

@@ -6,4 +6,11 @@ class Match < ApplicationRecord
 
   belongs_to :group
   belongs_to :tournament
+
+  class << self
+    def search player_1_id, player_2_id
+      (joins(:players).merge(Player.where(id: player_1_id)) &
+        joins(:players).merge(Player.where(id: player_2_id))).first
+    end
+  end
 end
