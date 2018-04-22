@@ -2,6 +2,7 @@
 
 - [Requirements](#requirements)
 - [Setup](#setup)
+- [API Docs](#api-docs)
 - [Achievements](#achievements)
 - [Improvements](#improvements)
 
@@ -17,7 +18,6 @@
 ### Setting up the development environment
 
 #### Clone and pull source code:
-
     ```bash
     git@github.com:bathien/api-challenge.git
     cd api-challenge
@@ -25,21 +25,22 @@
     ```
 
 #### Prepare database.yml
-```bash
-cp config/database.example.yml config/database.yml
-```
+    ```bash
+    cp config/database.example.yml config/database.yml
+    ```
 
 Config database.yml with your database configuration in your development enviroment
 
 #### Create and migrate database.yml
-
     ```bash
     bundle exec rake db:create
     bundle exec rake db:migrate
     ```
-
+#### Re-generate secret key if needed
+    ```bash
+    bundle exec rake secret
+    ```
 ####  Start the development server:
-
     ```bash
     bundle exec rails s
     ```
@@ -47,6 +48,227 @@ Config database.yml with your database configuration in your development envirom
 Done
 
 ### API Docs
+
+#### Import CSV[Post /api/v1/tournaments/import]
+
++ Attributes
+    + file (file, required) - required, csv file
+
++ Response 200 (application/json)
+
+```
+{
+    "message": "Your CSV file has been succesfully imported"
+}
+```
++ Response 400 (application/json)
+
+```
+{
+    "message": "Please import a CSV file"
+}
+```
+
+#### Get matches by tournament name[GET /api/v1/tournaments/matches?{tournament_name}]
+
++ Attributes
+    + tournament_name (required) - tournament_name, tournament's name
+
++ Response 200 (application/json)
+
+```
+{
+    "items": [
+        {
+            "id": 34,
+            "tournament_id": 2,
+            "group_id": 9,
+            "code": "A1-1-2",
+            "date": "2017-02-16",
+            "time": "21:00:00",
+            "venue": "Legend"
+        },
+        {
+            "id": 72,
+            "tournament_id": 2,
+            "group_id": 12,
+            "code": "A4-3-5",
+            "date": "2017-02-15",
+            "time": "21:00:00",
+            "venue": "Twins"
+        },
+        {
+            "id": 73,
+            "tournament_id": 2,
+            "group_id": 12,
+            "code": "A4-4-5",
+            "date": "2017-02-14",
+            "time": "20:00:00",
+            "venue": "Twins"
+        },
+        {
+            "id": 74,
+            "tournament_id": 2,
+            "group_id": 13,
+            "code": "B1-1-2",
+            "date": "2017-02-13",
+            "time": "16:00:00",
+            "venue": "Carmen"
+        },
+        {
+            "id": 75,
+            "tournament_id": 2,
+            "group_id": 13,
+            "code": "B1-1-3",
+            "date": "2017-02-16",
+            "time": "14:00:00",
+            "venue": "Professional"
+        },
+        {
+            "id": 76,
+            "tournament_id": 2,
+            "group_id": 13,
+            "code": "B1-1-4",
+            "date": "2017-02-16",
+            "time": "19:00:00",
+            "venue": "Legend"
+        },
+        {
+            "id": 77,
+            "tournament_id": 2,
+            "group_id": 13,
+            "code": "B1-1-5",
+            "date": "2017-02-16",
+            "time": "13:00:00",
+            "venue": "Professional"
+        },
+        {
+            "id": 78,
+            "tournament_id": 2,
+            "group_id": 13,
+            "code": "B1-2-3",
+            "date": "2017-02-16",
+            "time": "15:00:00",
+            "venue": "Professional"
+        }
+    ]
+}
+```
++ Response 400 (application/json)
+
+```
+{
+    "message": "Your request params is wrong"
+}
+```
+
+#### Get matches by player name[GET /api/v1/tournaments/matches?{player_name}]
+
++ Attributes
+    + player_name (required) - required, player's name
+
++ Response 200 (application/json)
+
+```
+{
+    "items": [
+        {
+            "id": 4,
+            "tournament_id": 1,
+            "group_id": 2,
+            "code": "C2-1-2",
+            "date": "2017-02-16",
+            "time": "18:00:00",
+            "venue": "Carmen"
+        },
+        {
+            "id": 5,
+            "tournament_id": 1,
+            "group_id": 2,
+            "code": "C2-1-3",
+            "date": "2017-02-16",
+            "time": "12:00:00",
+            "venue": "Twins"
+        },
+        {
+            "id": 36,
+            "tournament_id": 2,
+            "group_id": 9,
+            "code": "A1-1-4",
+            "date": "2017-02-12",
+            "time": "14:00:00",
+            "venue": "Carmen"
+        },
+        {
+            "id": 39,
+            "tournament_id": 2,
+            "group_id": 9,
+            "code": "A1-2-4",
+            "date": "2017-02-14",
+            "time": "14:00:00",
+            "venue": "Carmen"
+        },
+        {
+            "id": 41,
+            "tournament_id": 2,
+            "group_id": 9,
+            "code": "A1-3-4",
+            "date": "2017-02-12",
+            "time": "13:00:00",
+            "venue": "Carmen"
+        },
+        {
+            "id": 43,
+            "tournament_id": 2,
+            "group_id": 9,
+            "code": "A1-4-5",
+            "date": "2017-02-12",
+            "time": "16:00:00",
+            "venue": "Carmen"
+        }
+    ]
+}
+```
++ Response 400 (application/json)
+
+```
+{
+    "message": "Your request params is wrong"
+}
+```
+
+#### Get result by player name[GET /api/v1/tournaments/statistical?{player_name}]
+
++ Attributes
+    + player_name (required) - required, player's name
+
++ Response 200 (application/json)
+
+```
+    {
+        "item": {
+            "won_matches": 2,
+            "lost_matches": 1,
+            "drawn_matches": 3,
+            "point": 9
+        }
+    }
+```
++ Response 400 (application/json)
+
+```
+{
+    "message": "Please check your request params"
+}
+```
+
++ Response 200 (application/json)
+
+```
+{
+    "message": "No result found for player: Elon Musk1"
+}
+```
 
 ### Running tests with Postman
 This is Rails API-only project so I use Postman to testing development source code based on the api docs above
@@ -66,7 +288,7 @@ https://www.getpostman.com/
 1.  Query matches by tournament name:
 
     ```bash
-    http://localhost:3000/api/v1/tournaments/matches?tournament_name=Tournament%2010%20ball
+    http://localhost:3000/api/v1/tournaments/matches?tournament_name=Tournament%209%20ball
     ```
 
     **Note:** The tournament name has been capitalized
@@ -99,12 +321,17 @@ https://www.getpostman.com/
 
 ## Achievements
 
-When working on this project, I have a chance to solving some of the many-to-many relationships which make us have to deal with before going to code.
-
-Also, Rspec is currently applied to create units test for the app that helps us to create lots of scenarios to make sure the app works correctly.
-
-And the last one I proud of in this implementation is my coding styles. I have tried my best to write readable code that makes more sense for the reviewer or co-workers when working in a team.
+- Build DB structual
+- Finish feature challenge
+- Tested with Rspec
+- Add rack-attack and rack-cors to protect api-server
+- Using rubocop to check coding convention
 
 ## Improvements
+I think it a challenge project but if it develop more i think DB structure will need to change like match with team, tournament yearly seasonly
+- Source code is hard code in counting point
+- Add more test case to rspec
+- Add sidekiq to implement backgroud-job when import csv
+- Decrease DB hit when import csv
+- API authentication
 
-I have thought that the import function needs to run in the background because when we import a huge file that will take a long time for the user to wait for a response. But it does not worth to implement at the moment because we are focusing on the correctness of the application. [Let me know](mailto:khaile.to@gmail.com) what do you think?
