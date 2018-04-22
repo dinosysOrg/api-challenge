@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Result, type: :model do
   it "result point csv" do
-    csv_file_path = fixture_file_upload("tournament 10 ball.csv")
+    csv_file_path = fixture_file_upload("files/tournament 10 ball.csv")
     Tournament.import_tournament_from_csv(csv_file_path)
 
     player_1_id = Player.find_by_name("Mark Zuckerberg").id
@@ -19,7 +19,7 @@ RSpec.describe Result, type: :model do
   end
 
   it "player 1 win" do
-    csv_file_path = fixture_file_upload("tournament 10 ball.csv")
+    csv_file_path = fixture_file_upload("files/tournament 10 ball.csv")
     Tournament.import_tournament_from_csv(csv_file_path)
 
     player_1_id = Player.find_by_name("Elon Musk").id
@@ -33,7 +33,7 @@ RSpec.describe Result, type: :model do
   end
 
   it "draw" do
-    csv_file_path = fixture_file_upload("tournament 10 ball.csv")
+    csv_file_path = fixture_file_upload("files/tournament 10 ball.csv")
     Tournament.import_tournament_from_csv(csv_file_path)
 
     player_1_id = Player.find_by_name("Mark Zuckerberg").id
@@ -47,7 +47,7 @@ RSpec.describe Result, type: :model do
   end
 
   it "player 1 gave up" do
-    csv_file_path = fixture_file_upload("tournament 10 ball.csv")
+    csv_file_path = fixture_file_upload("files/tournament 10 ball.csv")
     Tournament.import_tournament_from_csv(csv_file_path)
 
     player_1_id = Player.find_by_name("Diane Greene").id
@@ -63,7 +63,7 @@ RSpec.describe Result, type: :model do
   end
 
   it "player 2 win" do
-    csv_file_path = fixture_file_upload("tournament 10 ball.csv")
+    csv_file_path = fixture_file_upload("files/tournament 10 ball.csv")
     Tournament.import_tournament_from_csv(csv_file_path)
 
     player_1_id = Player.find_by_name("Nathan Blecharczyk").id
