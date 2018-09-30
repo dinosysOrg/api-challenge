@@ -4,4 +4,6 @@ class Match < ApplicationRecord
   belongs_to :venue
   belongs_to :player_1, class_name: "User"
   belongs_to :player_2, class_name: "User"
+
+  validates :match_code, presence: true
 end
