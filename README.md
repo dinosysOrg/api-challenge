@@ -8,7 +8,7 @@
 
 ### Tech
 - Ruby version 2.5.1
-- Rails version 2.5.1
+- Rails version 5.2.1
 - Gems: active_model_serializers, rspec-rails, database_cleaner, factory_bot_rails, oj
 
 ### **API descriptions**
