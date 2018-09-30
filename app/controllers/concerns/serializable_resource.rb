@@ -1,5 +1,5 @@
 module SerializableResource
   def parse_json object
-    Oj.dump ActiveModelSerializers::SerializableResource.new(object)
+    ActiveModelSerializers::SerializableResource.new(object).as_json
   end
 end
