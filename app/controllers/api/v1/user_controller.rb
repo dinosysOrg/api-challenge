@@ -16,28 +16,3 @@ class Api::V1::UserController < ApplicationController
     end
 
 end
-
-
-# search by user_name
-# {
-#   points: 9,
-#   match_result: {
-#     won: ,
-#     lost:,
-#     drawn:
-#   }
-# }
-
-# search by player name or tournament name.
-# [
-#   {
-#     group
-#     match_code
-#     p1
-#     p2
-#     venue
-#     score
-#     time
-#     date
-#   }
-# ]
