@@ -60,5 +60,4 @@ class Api::V1::CsvController < ApplicationController
     #     json_response "Input wrong at #{obj.class.name}", false, {}, :ok
     #   end
     # end
-
 end

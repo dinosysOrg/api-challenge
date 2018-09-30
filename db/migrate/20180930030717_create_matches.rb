@@ -8,7 +8,7 @@ class CreateMatches < ActiveRecord::Migration[5.2]
       t.integer :player_2_id
       t.string :score
       t.string :match_code
-      t.time :time
+      t.string :time
       t.date :date
 
       t.timestamps
