@@ -86,11 +86,15 @@
         }
     ```
 ### **Deployment instructions**
-> git clonehttps://github.com/leanhthang/api-challenge.git
-> cd api-challenge
-> bundle install
-> rails db:setup
+```sh
+$ git clonehttps://github.com/leanhthang/api-challenge.git
+$ cd api-challenge
+$ bundle install
+$ rails db:setup
+```
 ### **Test methods**
 - **Postman**
     > rails server
 - **Rspec test**
+
+
